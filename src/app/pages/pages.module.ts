@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AccountHomeComponent } from './account-home/account-home.component';
 
 
 @NgModule({
@@ -22,11 +24,14 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     LayoutComponent,
     HomeComponent,
-    FooterComponent 
+    FooterComponent,
+    AccountHomeComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
+    HttpClientModule,
+    FormsModule,
     HttpClientModule
   ]
 })

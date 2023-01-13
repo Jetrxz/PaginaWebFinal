@@ -11,9 +11,10 @@
             <li><a routerLink="/account">Mi Cuenta</a></li>
         </ul>
     </nav>
-    <a routerLink="/cart">
-      <img src="/assets/img/carrito.png" width="30px" height="30px">
-    </a>
+    <button routerLink="/cart" class="btn btn-primary">
+      <i style="font-size:30px;" class="fas fa-cart-plus"></i>
+      <div style="font-size:12px" class="badge bg-danger">{{totalItem}}</div>
+    </button>
     <img src="/assets/img/menu.png" class="menu-icon">
   </div>
 </div>

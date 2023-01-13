@@ -1,4 +1,4 @@
-<ng-container *ngIf="products.lenght != 0">
+<ng-container *ngIf="products.length != 0">
   <div class="container">
     <div class="card-table">
       <div class="cart-product">
@@ -8,8 +8,8 @@
               <th>N°</th>
               <th>Imagen</th>
               <th>Nombre</th>
-              <th>Precio</th>
               <th>Descripcion</th>
+              <th>Precio</th>
               <th>Cantidad</th>
               <th>Total</th>
               <th>Accion</th>
@@ -18,21 +18,21 @@
           <tbody>
             <tr *ngFor="let item of products; let i = index">
               <td>{{i+1}}</td>
-              <td><img style="width: 120px;" src="{{item.imageUrl}}"></td>
+              <td><img style="width: 120px;" [src]="url+item.imageUrl"></td>
               <td>{{item.nombre}}</td>
-              <td>{{item.precio}}</td>
               <td>{{item.descripcion}}</td>
+              <td>S/.{{item.precio}}</td>
               <td>{{item.quantity}}</td>
               <td>{{item.total}}</td>
               <td>
-                <button (click)="removeItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                <button (click)="removeItem(item)"class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
               </td>
             </tr>
             <tr>
               <td colspan="4"></td>
               <td><button (click)="emptyCart()" class="btn btn-danger">Vaciar Carrito</button></td>
-              <td><button routerLink="/products" class="btn">Comprar mas</button></td>
-              <td><button class="btn">Comprar mas</button></td>
+              <td><button routerLink="/products" class="btn btn-yellow">Comprar mas</button></td>
+              <td><button class="btn btn-green">Continuar Compra</button></td>
               <td><strong>Total : ${{grandTotal}}</strong></td>
             </tr>
           </tbody>
@@ -42,7 +42,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="products.lenght == 0">
+<ng-container *ngIf="products.length == 0">
   <div class="small-container cart-page">
     <div class="cart">
         <h2 class="cart-title">Mi carrito</h2>

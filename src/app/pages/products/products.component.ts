@@ -1,6 +1,7 @@
 import { CartService } from './../../services/cart.service';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
+  url = environment.uri_backend;
   public productList : any ;
 
   constructor(private api : ApiService, private cartService : CartService) { }
@@ -17,8 +19,8 @@ export class ProductsComponent implements OnInit{
     .subscribe(res=>{
       this.productList = res;
       this.productList.forEach((a:any) => {
-        Object.assign(a,{quantity:1,total:a.price});
-      });
+        Object.assign(a,{quantity:1,total:a.precio});
+      })
     })
   }
   addtoCart(item:any){

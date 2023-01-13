@@ -1,3 +1,4 @@
+import { AccountHomeComponent } from './account-home/account-home.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
@@ -6,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,6 +27,10 @@ const routes: Routes = [
       },
       {
         path:'products', component:ProductsComponent
+      },
+      {
+        path:'account-home', component:AccountHomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'cart', component:CartComponent

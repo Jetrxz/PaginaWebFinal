@@ -1,6 +1,6 @@
 .container {
   max-width: 100%;
-  padding: 0px 200px;
+  padding: 200px 200px;
 }
 .small-container{
   padding-left: 15px;
@@ -138,6 +138,28 @@ h4,h6{
   background-color: rgb(195, 47, 47);
   color: #fff;
   cursor: pointer;
+}
+.btn-green{
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+  text-decoration: none;
+  background-color: rgb(31, 225, 109);
+  color: #fff;
+  cursor: pointer;
+}
+.btn-yellow{
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+  text-decoration: none;
+  background-color: rgb(202, 240, 9);
+  color: #fff;
+  cursor: pointer;
+}
+#xd{
+  background-color: #fff;
+  color: #000;
 }
 @media (max-width: 700px) {
   .table thead{
