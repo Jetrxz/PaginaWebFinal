@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './checkout/checkout.component';
 import { AccountHomeComponent } from './account-home/account-home.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsComponent } from './products/products.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
       },
       {
         path:'products', component:ProductsComponent
+      },
+      {
+        path:'checkout', component:CheckoutComponent
       },
       {
         path:'account-home', component:AccountHomeComponent,

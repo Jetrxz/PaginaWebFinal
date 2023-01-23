@@ -1,0 +1,33 @@
+<div *ngIf="!userService.isUserLoggedIn.getValue()">
+  <p>Por favor, registrese para realizar un pedido.</p>
+  <button (click)="redirectToSignUp()">Registrarse</button>
+</div>
+<div class="checkout-form" *ngIf="userService.isUserLoggedIn.getValue()">
+  <form [formGroup]="checkoutForm">
+    <div class="form-group">
+      <label for="name">Nombres:</label>
+      <input type="text" formControlName="nombres" id="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" formControlName="apellidos" id="apellidos" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="address">Direccion:</label>
+      <input type="email" id="address" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="telefono">Telefono:</label>
+      <input type="tel" formControlName="celular" id="telefono" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="payment-method">Método de pago:</label>
+      <select  id="payment-method" class="form-control">
+        <option value="credit-card">Efectivo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Realizar pedido</button>
+    </div>
+  </form>
+</div>

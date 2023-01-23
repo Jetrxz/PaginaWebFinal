@@ -1,6 +1,7 @@
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { ProductsComponent } from './products/products.component';
@@ -13,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AccountHomeComponent } from './account-home/account-home.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -25,9 +27,11 @@ import { AccountHomeComponent } from './account-home/account-home.component';
     LayoutComponent,
     HomeComponent,
     FooterComponent,
-    AccountHomeComponent
+    AccountHomeComponent,
+    CheckoutComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     PagesRoutingModule,
     HttpClientModule,
