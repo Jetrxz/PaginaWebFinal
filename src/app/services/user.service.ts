@@ -44,5 +44,13 @@ export class UserService {
     }
     return '';
   }
+  getUserId() {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user = JSON.parse(userString);
+      return user.clienteId;
+    }
+    return 0;
+}
 }
 

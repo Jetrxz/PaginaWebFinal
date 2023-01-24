@@ -2,60 +2,56 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PedidoProductoModel } from '../models/pedidoproducto.model';
 import { PedidosModel } from '../models/pedidos.model';
+import { Ubicacion_PedidoModel } from '../models/ubicacionpedido.model';
+import { UbicacionService } from './ubicacion.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   private url = 'http://localhost:7139';
-  constructor(private http: HttpClient) { }
-  // Método para enviar un nuevo pedido
+  constructor(private http: HttpClient, private ubicacionService: UbicacionService) { }
 
-
-  submitOrder(pedidoData: PedidosModel) {
-    // Crea una variable para almacenar los productos del pedido
+  submitOrder(pedidoData: PedidosModel, latitud: number, longitud: number) {
     let pedido_productos: PedidoProductoModel[] = [];
-
-    // Itera sobre los productos en el carrito
-    for (let product of pedidoData.pedidoProductos) {
-      // Crea una variable para almacenar la información del producto
-      let pedido_producto: PedidoProductoModel = {
-        pedidoProductoId: 0,
-        pedidoId: pedidoData.pedidoId,
-        cantidad: product.cantidad,
-        totalProducto: product.totalProducto,
-        productoId: product.productoId
-      };
-
-      // Añade el producto al array
-      pedido_productos.push(pedido_producto);
+    let direccion: Ubicacion_PedidoModel = {
+      latitud: latitud,
+      longitud: longitud,
+      direccion: '',
+      referencia: ''
     }
-    // Crea un objeto para enviar a la API
-    let pedido = {
-      FechaPedido: pedidoData.fechaPedido,
-      FechaEntrega: pedidoData.fechaEntrega,
-      Direccion: pedidoData.direccionId,
-      Total: pedidoData.total,
-      EstadoId: pedidoData.estadoId,
-      ClienteId: pedidoData.clienteId,
-      Pedido_Productos: pedido_productos
-    };
-    // Envia el pedido a la API
-    return this.http.post<PedidosModel>('http://localhost:7139/api/pedidos', pedido);
+    this.ubicacionService.saveAddress(direccion).subscribe((ubicacionId) => {
+      pedidoData.direccionId = ubicacionId;
+      for (let product of pedidoData.pedidoProductos) {
+        let pedido_producto: PedidoProductoModel = {
+          pedidoProductoId: 0,
+          pedidoId: pedidoData.pedidoId,
+          cantidad: product.cantidad,
+          totalProducto: product.totalProducto,
+          productoId: product.productoId
+        };
+        pedido_productos.push(pedido_producto);
+      }
+      let pedido = {
+        FechaPedido: pedidoData.fechaPedido,
+        FechaEntrega: pedidoData.fechaEntrega,
+        Direccion: pedidoData.direccionId,
+        Total: pedidoData.total,
+        EstadoId: pedidoData.estadoId,
+        ClienteId: pedidoData.clienteId,
+        Pedido_Productos: pedido_productos
+      };
+      return this.http.post<PedidosModel>('http://localhost:7139/api/pedidos', pedido);
+    })
   }
-
-  // Método para obtener todos los pedidos
   getOrders() {
     return this.http.get(`${this.url}/Pedidos`);
   }
-
-  // Método para obtener un pedido específico
-  getOrder(id:number) {
+  getOrder(id: number) {
     return this.http.get(`${this.url}/Pedidos/${id}`);
   }
-
-  // Método para eliminar un pedido
-  deleteOrder(id:number) {
+  deleteOrder(id: number) {
     return this.http.delete(`${this.url}/Pedidos/${id}`);
   }
 }
+

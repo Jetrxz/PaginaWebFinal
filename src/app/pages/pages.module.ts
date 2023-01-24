@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AccountHomeComponent } from './account-home/account-home.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     PagesRoutingModule,
     HttpClientModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule
   ]
 })
 export class PagesModule { }
